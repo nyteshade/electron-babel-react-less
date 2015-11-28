@@ -1,9 +1,24 @@
 {
-  "name": "electron-es6-react",
-  "version": "0.1.0",
+  "name": "electron-babel-react-less",
+  "version": "0.1.1",
   "main": "bootstrapper.js",
+  "author": {
+    "name": "Brielle Harrison",
+    "email": "nyteshade@gmail.com"
+  },
+  "description": "A fork of https://github.com/b52/electron-es6-react.git that includes babel, less and electron-compile",
   "dependencies": {
-    "babel": "*",
-    "react": "*"
+    "babel": "5",
+    "edge": "^4.0.0",
+    "electron-compile": "^1.0.1"
+  },
+  "devDependencies": {
+    "react": "*",
+    "react-dom": "^0.14.3",
+    "electron-compilers": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nyteshade/electron-babel-react-less.git"
   }
 }

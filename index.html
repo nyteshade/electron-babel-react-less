@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>electron es6 react boilerplate</title>
+    <!-- Pull in the LESS stylesheet for this page -->
+    <link rel="stylesheet" href="css/index.less"/>
   </head>
 
+  <!-- The body is handled by the React view -->
   <body>
+    <main class="container">
+      <div class="loading"/>
+      <div class="progress"/>
+    </main>
   </body>
 
-  <script>
-    // install babel hooks in the renderer process
-    require('babel/register');
-
-    var React = require('react');
-    var Main = require('./views/main.jsx');
-
-    React.render(React.createElement(Main, null), document.body);
-  </script>
+  <!-- Load the script that calls react last -->
+  <script async src="js/index.js"></script>
 </html>
