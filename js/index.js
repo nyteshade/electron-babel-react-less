@@ -8,4 +8,4 @@ let target = document.body.querySelector('body > main');
 
 setTimeout(() => {
   ReactDOM.render(<Main/>, target);
-}, 9500);
+}, 3500);
