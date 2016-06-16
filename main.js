@@ -1,36 +1,53 @@
 'use babel';
 
-import app from 'app';
-import BrowserWindow from 'browser-window';
+import electron from 'electron';
 import Q from 'q';
 
-let mainWindow = null;
+// Module to control application life.
+const app = electron.app
+// Module to create native browser window.
+const BrowserWindow = electron.BrowserWindow
 
-// Example of using async/await
-function getAge() {
-  let defer = Q.defer();
-  setTimeout(()=>defer.resolve(21), 3000);
-  return defer.promise;
+let mainWindow;
+
+function createWindow () {
+  // Create the browser window.
+  mainWindow = new BrowserWindow({width: 800, height: 600})
+
+  // and load the index.html of the app.
+  mainWindow.loadURL(`file://${__dirname}/index.html`)
+
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools()
+
+  // Emitted when the window is closed.
+  mainWindow.on('closed', function () {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null
+  })
 }
 
-async function t() {
-  let age = await getAge();
-  console.log('inside t, age is %d', age);
-}
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', createWindow)
 
-t();
-// End example of using async/await
-
-app.on('window-all-closed', () => {
-  if (process.platform != 'darwin') {
-    app.quit();
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
 });
 
-app.on('ready', () => {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+app.on('activate', function () {
+  // On OS X it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) {
+    createWindow()
+  }
 });
+
