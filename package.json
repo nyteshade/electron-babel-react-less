@@ -13,7 +13,7 @@
     "edge": "^4.0.0",
     "electron-compile": "^3.2.5",
     "q": "^1.4.1",
-    "react": "^15.1.0"
+    "react": "^16.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
